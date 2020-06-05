@@ -1,26 +1,16 @@
 const express = require('express');
 const path = require('path');
 const app = express();
+const logger = require('./middleware/logger');
+const members = require('./Members');
 
 /* // setup up Route
 app.get('/', (req,res) =>{
     res.sendFile(path.join(__dirname,'public','index.html'));
 }); */
 
-const members = [
-    {
-        name:'Alice',
-        age:3
-    },
-    {
-        name:'Bob',
-        age:4
-    },
-    {
-        name:'Charlie',
-        age:6
-    },
-];
+// next = next middleware function on stack
+app.use(logger);
 
 app.get('/api/members', (req,res) =>{
     res.json(members);
